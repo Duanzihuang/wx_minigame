@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas基础</title>
+</head>
+<body>
+    <canvas id="myCanvas" style="background: #ccc" width="800" height="800"></canvas>
+    <!-- <img id="imgId" src="imgs/panda.jpg" alt=""> -->
+</body>
+<script>
+    // 获取canvas Dom
+    const canvas = document.getElementById("myCanvas")
+
+    // 获取上下文(渲染模式)
+    const ctx = canvas.getContext('2d')
+
+    // 绘制矩形
+    ctx.fillStyle = "red"
+    ctx.fillRect(0,0,100,100)
+
+    // 绘制文字
+    ctx.fillStyle = "yellow"
+    ctx.font = "30px Arlia"
+    ctx.fillText('你好',150,150)
+
+    // 绘制图片1
+    /**
+    var img = document.getElementById('imgId')
+    // 必须等图片加载完毕之后，才能进行绘制
+    img.onload = function(){
+        ctx.drawImage(img,200,200)
+    }
+    **/
+
+    // 绘制图片2
+    var img = new Image()
+    img.src = "imgs/panda.jpg"
+    img.onload = function(){
+        ctx.drawImage(img,200,200,100,100)
+    }
+
+    // 清除canvas
+    setTimeout(() => {
+        ctx.clearRect(0,0,800,800)
+    }, 2000);
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 动画</title>
+</head>
+<body>
+    <canvas id="myCanvas" style="background: #ccc" width="1000" height="500"></canvas>
+</body>
+<script>
+    // 获取到dom
+    var canvas = document.getElementById('myCanvas')
+
+    // 获取上下文
+    var ctx = canvas.getContext('2d')
+
+    // 设置颜色
+    ctx.fillStyle = "#FF0000"
+
+    // 动画
+    var left = 0
+
+    // 绘制矩形并且进行动画1【setInterval】
+    /**
+    var timer = 0
+    timer = setInterval(function(){
+        // 先清除之前的canvas
+        ctx.clearRect(0,0,1000,500)
+        left++
+        if (left > 200) {
+            clearInterval(timer)
+        }
+        // 重新绘制，然后形成动画
+        ctx.fillRect(left,0,50,50)
+    },10)
+    **/
+
+     // 绘制矩形并且进行动画2【setTimeout + 递归】
+     /*
+     function drawAndAnimation(){
+         ctx.clearRect(0,0,1000,500)
+         left++
+         ctx.fillRect(left,0,50,50)
+         if (left < 300){
+            setTimeout(drawAndAnimation, 10)
+         }
+     }
+     drawAndAnimation()
+     */
+
+     // 绘制矩形并且进行动画2【requestAnimationFrame】
+     function drawAndAnimation(){
+         ctx.clearRect(0,0,1000,500)
+         left++
+         ctx.fillRect(left,0,50,50)
+         if (left < 200){
+            requestAnimationFrame(drawAndAnimation)
+         }
+     }
+     drawAndAnimation()
+
+     /**
+        setInterval && setTimeout
+        setInterval:只要定时器开启就会不停执行，很容易造成内存堆积卡死
+        setTimeout:递归方式执行，drawAndAnimation函数只有当上一个setTimeout执行完毕的时候才会执行下一个
+     */
+</script>
+</html>
