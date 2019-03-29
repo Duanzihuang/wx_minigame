@@ -33,5 +33,8 @@ function move() {
   pool.drawEnemys(top)
   // 绘制N个子弹
   pool.drawBullets(top)
+  // 绘制爆炸效果
+  pool.drawBooms()
+  // 反复执行动画
   requestAnimationFrame(move)
 }

@@ -17,6 +17,21 @@ export default (ctx) => {
       } else {
         this.status = false
       }
+    },
+    //爆炸方法
+    boom(bulletPosition) {
+      // 重置子弹的中心点
+      const x = bulletPosition.x + bulletPosition.w / 2
+      const y = bulletPosition.y + bulletPosition.h / 2
+
+      // 判断碰撞情况
+      if (x > this.init.x && x < this.init.x + this.init.w && y > this.init.y && y < this.init.y + this.init.h) {
+        // 销毁飞机
+        this.status = false
+
+        // 销毁了
+        return true
+      }
     }
   }
 
