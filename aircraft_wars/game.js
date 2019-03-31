@@ -3,6 +3,7 @@ require('./js/libs/weapp-adapter.js')
 import _background from './js/module/background.js'
 import _plane from './js/module/plane.js'
 import _pool from './js/module/pool.js'
+import _other from './js/module/other.js'
 
 //1、获取content
 const ctx = canvas.getContext('2d')
@@ -10,8 +11,9 @@ const ctx = canvas.getContext('2d')
 //2、创建background、plane
 var background = _background(ctx)
 var plane = _plane(ctx)
-var pool = _pool(ctx, plane.init)
+var pool = _pool(ctx, plane)
 plane.listen()
+var other = _other(ctx)
 
 //3、动画
 // 定义top值
@@ -35,6 +37,12 @@ function move() {
   pool.drawBullets(top)
   // 绘制爆炸效果
   pool.drawBooms()
-  // 反复执行动画
-  requestAnimationFrame(move)
+  // 绘制分数
+  other.drawScore(pool.score)
+  if (!plane.isOver) { //飞机没挂
+    // 反复执行动画
+    requestAnimationFrame(move)
+  } else { //飞机挂了
+    other.gameOver()
+  }
 }

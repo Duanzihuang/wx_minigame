@@ -9,7 +9,20 @@ export default (ctx) => {
       w: 93,
       h: 65
     },
+    isOver: false, //是否结束了
     status: true, //点击到了飞机
+    isBoom(enemyPosition) { //检测是否爆炸，传入敌机对象
+      //飞机的xy
+      //敌机的xy，获取敌机的中心点
+      var x = enemyPosition.x + enemyPosition.w / 2
+      var y = enemyPosition.y + enemyPosition.h / 2
+
+      if (x > this.init.x && x < this.init.x + this.init.w && y > this.init.y && y < this.init.y + this.init.h) {
+        // console.log('game over')
+        // 停止渲染 & 弹出游戏结束框
+        this.isOver = true
+      }
+    },
     // 事件监听
     listen() {
       canvas.addEventListener('touchstart', (e) => {
