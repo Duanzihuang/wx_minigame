@@ -1,7 +1,7 @@
 import _main from './main.js'
 
-export default () => {
-  var main = _main()
+export default (arr, render) => {
+  var main = _main(arr, render)
 
   var data = {
     pos: {

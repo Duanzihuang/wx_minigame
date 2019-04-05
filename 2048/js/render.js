@@ -35,8 +35,8 @@ export default ctx => {
             ctx.font = "bold 33px Arial"
             ctx.fillStyle = "white"
             ctx.textAlign = "center"
-            ctx.fillText(num, this.init.margin + this.init.space + l * (this.init.space + paneWidth) + 33,
-              this.init.top + this.init.space + h * (this.init.space + paneWidth) + 45)
+            ctx.fillText(num, this.init.margin + this.init.space + l * (this.init.space + paneWidth) + 30,
+              this.init.top + this.init.space + h * (this.init.space + paneWidth) + 40)
           }
         })
       })
