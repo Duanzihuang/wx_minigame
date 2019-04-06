@@ -1,7 +1,38 @@
 export default (arr, render) => {
   var data = {
     arr: arr,
+    // 插入一个数字
+    insert() {
+      var pos = []
+
+      // 循环每一行，把为0的位置存储起来
+      this.arr.forEach((hang, hangIndex) => {
+        // 循环每一行中的每一列
+        hang.forEach((lie, lieIndex) => {
+          // 找到了所有为0的值 ==> 将来把它替换成2
+          if (lie === 0) {
+            // 把他们放进一个数组，这个数组装的是 所有为0的位置【行，列】
+            pos.push([hangIndex, lieIndex])
+          }
+        })
+      })
+
+      if (pos.length == 0) {
+        console.log('游戏结束...')
+        return
+      }
+
+      // 随机找到一个为0的位置，把它替换成2
+      // 这个是随机出来的位置
+      // 随机出来pos的【行，列】
+      const insertPos = pos[Math.floor(Math.random() * pos.length)]
+      // 在arr[行][列] = 插入 insertPos【0】【1】
+      this.arr[insertPos[0]][insertPos[1]] = 2
+    },
     init() {
+      // 随机插入一个数
+      this.insert()
+
       render.drawPane(this.arr)
     },
     left() {
